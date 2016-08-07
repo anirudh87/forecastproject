@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="forecastdata"
+            type="com.test.project.model.ForecastData" />
+
+        <variable
+            name="showingdata"
+            type="boolean" />
+    </data>
+
+    <LinearLayout style="@style/MatchParentLayout">
+
+        <LinearLayout
+            style="@style/VerticalLayout"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:visibility="@{showingdata ? View.VISIBLE : View.GONE}">
+
+            <TextView
+                style="@style/MatchWidthLayout"
+                android:gravity="center_horizontal"
+                android:text="@{forecastdata.city.name}"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                style="@style/MatchWidthLayout"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    style="@style/WrapContentLayout"
+                    android:layout_margin="5dp"
+                    android:gravity="center_horizontal"
+                    android:text="@{String.valueOf(forecastdata.city.coord.lat)}"
+                    android:textSize="14sp" />
+
+                <TextView
+                    style="@style/WrapContentLayout"
+                    android:layout_margin="5dp"
+                    android:gravity="center_horizontal"
+                    android:text=","
+                    android:textSize="14sp" />
+
+                <TextView
+                    style="@style/WrapContentLayout"
+                    android:layout_margin="5dp"
+                    android:gravity="center_horizontal"
+                    android:text="@{String.valueOf(forecastdata.city.coord.lon)}"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/forecast_list"
+                style="@style/MatchParentLayout"
+                android:scrollbars="vertical" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/VerticalLayout"
+            android:padding="15dp"
+            android:visibility="@{showingdata ? View.GONE : View.VISIBLE}">
+
+            <TextView
+                style="@style/MatchWidthLayout"
+                android:gravity="center"
+                android:text="@string/error_message" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

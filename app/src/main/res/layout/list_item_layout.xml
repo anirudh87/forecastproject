@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="forecast"
+            type="com.test.project.model.Forecast" />
+    </data>
+
+    <LinearLayout style="@style/ListItemVerticalLinearLayout">
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/TitleTVStyle"
+            app:timestamp="@{String.valueOf(forecast.dt)}"
+            />
+        <LinearLayout
+            style="@style/OuterHorizontalLinearLayout">
+            <LinearLayout
+                style="@style/BottomItemViewContainer">
+                <TextView
+                    android:id="@+id/tv_title1"
+                    style="@style/DescTVStyle"
+                    android:text="@{forecast.weather.get(0).main}"
+                    />
+                <TextView
+                    android:id="@+id/tv_desc"
+                    style="@style/DescTVStyle"
+                    android:text="@{forecast.weather.get(0).description}"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                style="@style/ImageViewContainer">
+                <ImageView
+                    android:id="@+id/iv_image"
+                    style="@style/IconIVStyle"
+                    app:imageUrl="@{forecast.weather.get(0).icon}"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

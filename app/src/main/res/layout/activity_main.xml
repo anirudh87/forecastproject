@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        style="@style/VerticalLayout"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        tools:context=".activity.MainActivity">
+
+        <EditText
+            android:id="@+id/location"
+            style="@style/MatchWidthLayout"
+            android:hint="@string/search_hint" />
+
+        <Button
+            android:id="@+id/search_btn"
+            style="@style/MatchWidthLayout"
+            android:text="@string/search" />
+    </LinearLayout>
+</layout>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="currentdata"
+            type="com.test.project.model.CurrentData" />
+
+        <variable
+            name="showingdata"
+            type="boolean" />
+    </data>
+
+    <LinearLayout style="@style/MatchParentLayout">
+
+        <LinearLayout
+            style="@style/VerticalLayout"
+            android:padding="15dp"
+            android:visibility="@{showingdata ? View.VISIBLE : View.GONE}">
+
+            <TextView
+                style="@style/MatchWidthLayout"
+                android:gravity="center_horizontal"
+                android:text="@{currentdata.name}"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/MatchWidthLayout"
+                android:gravity="center_horizontal"
+                android:textSize="14sp"
+                app:timestamp="@{String.valueOf(currentdata.dt)}" />
+
+            <RelativeLayout style="@style/MatchWidthLayout">
+
+                <ImageView
+                    android:id="@+id/weather_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    app:imageUrl="@{currentdata.weather.get(0).icon}" />
+
+                <LinearLayout
+                    style="@style/WrapContentLayout"
+                    android:layout_toEndOf="@+id/weather_icon"
+                    android:layout_toRightOf="@+id/weather_icon"
+                    android:orientation="vertical"
+                    android:padding="15dp">
+
+                    <TextView
+                        android:id="@+id/weather_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{currentdata.weather.get(0).main}"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/weather_desc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="@{currentdata.weather.get(0).description}"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout style="@style/MatchWidthLayout">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15sp"
+                    android:text="@string/wind"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15sp"
+                    android:text="@{String.valueOf(currentdata.wind.speed)}"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/VerticalLayout"
+            android:padding="15dp"
+            android:visibility="@{showingdata ? View.GONE : View.VISIBLE}">
+
+            <TextView
+                style="@style/MatchWidthLayout"
+                android:gravity="center"
+                android:text="@string/error_message" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>
